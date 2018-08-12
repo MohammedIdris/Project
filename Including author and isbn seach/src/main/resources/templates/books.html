@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Boot Example</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(books)}">
+        <h2>Book List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>ISBN</th>
+                <th>Authors</th>
+                <th>Release Date</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
+            </tr>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.id}"><a href="/book/${book.id}">Id</a></td>
+                <td th:text="${book.bookName}">bookName</td>
+                <td th:text="${book.isbn}">ISBN</td>
+                <td th:text="${book.author}">author</td>
+                <td th:text="${book.releaseDate}">Release Date</td>
+                <td><a th:href="${ '/book/' + book.id}">View</a></td>
+                <td><a th:href="${'/book/edit/' + book.id}">Edit</a></td>
+                <td><a th:href="${'/book/delete/' + book.id}">Delete</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
